@@ -318,7 +318,7 @@
      * point.
      */
     var _pointAlongPath = function(curve, location, distance) {
-        
+
         if (_isPoint(curve)) {
             return {
                 point:curve[0],
@@ -338,14 +338,10 @@
             tally += _dist(cur, prev);
             prev = cur;
         }
-
         return {point:cur, location:curLoc};
     };
 
     var _length = function(curve) {
-
-        var d = new Date().getTime();
-
         if (_isPoint(curve)) return 0;
 
         var prev = _pointOnPath(curve, 0),
@@ -360,8 +356,6 @@
             tally += _dist(cur, prev);
             prev = cur;
         }
-        console.log("length", new Date().getTime() - d);
-
         return tally;
     };
 
@@ -385,11 +379,9 @@
      * thanks // http://bimixual.org/AnimationLibrary/beziertangents.html
      */
     var _gradientAtPoint = function(curve, location) {
-
         var p1 = _pointOnPath(curve, location),
             p2 = _pointOnPath(curve.slice(0, curve.length - 1), location),
             dy = p2.y - p1.y, dx = p2.x - p1.x;
-
         return dy === 0 ? Infinity : Math.atan(dy / dx);
     };
 
@@ -10470,17 +10462,18 @@
         };
 
         this.getOrientation = function (_endpoint) {
-            if (orientation) {
-                return orientation;
-            }
-            else {
-                var o = ref.getOrientation(_endpoint);
-                // here we take into account the orientation of the other
-                // anchor: if it declares zero for some direction, we declare zero too. this might not be the most awesome. perhaps we can come
-                // up with a better way. it's just so that the line we draw looks like it makes sense. maybe this wont make sense.
-                return [ Math.abs(o[0]) * xDir * -1,
-                    Math.abs(o[1]) * yDir * -1 ];
-            }
+            // if (orientation) {
+            //     return orientation;
+            // }
+            // else {
+            //     var o = ref.getOrientation(_endpoint);
+            //     // here we take into account the orientation of the other
+            //     // anchor: if it declares zero for some direction, we declare zero too. this might not be the most awesome. perhaps we can come
+            //     // up with a better way. it's just so that the line we draw looks like it makes sense. maybe this wont make sense.
+            //     return [ Math.abs(o[0]) * xDir * -1,
+            //         Math.abs(o[1]) * yDir * -1 ];
+            // }
+            return [-1, 0];
         };
 
         /**
