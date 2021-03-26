@@ -942,17 +942,18 @@
         };
 
         this.getOrientation = function (_endpoint) {
-            if (orientation) {
-                return orientation;
-            }
-            else {
-                var o = ref.getOrientation(_endpoint);
-                // here we take into account the orientation of the other
-                // anchor: if it declares zero for some direction, we declare zero too. this might not be the most awesome. perhaps we can come
-                // up with a better way. it's just so that the line we draw looks like it makes sense. maybe this wont make sense.
-                return [ Math.abs(o[0]) * xDir * -1,
-                    Math.abs(o[1]) * yDir * -1 ];
-            }
+            // if (orientation) {
+            //     return orientation;
+            // }
+            // else {
+            //     var o = ref.getOrientation(_endpoint);
+            //     // here we take into account the orientation of the other
+            //     // anchor: if it declares zero for some direction, we declare zero too. this might not be the most awesome. perhaps we can come
+            //     // up with a better way. it's just so that the line we draw looks like it makes sense. maybe this wont make sense.
+            //     return [ Math.abs(o[0]) * xDir * -1,
+            //         Math.abs(o[1]) * yDir * -1 ];
+            // }
+            return [-1, 0];
         };
 
         /**
